@@ -1,0 +1,15 @@
+.git
+.husky
+.prettierrc
+.prettierignore
+.vscode
+.env
+**/node_modules
+commitlint.config.js
+README.md
+.lintstagedrc.json
+package-lock.json
+pnpm-lock.yaml
+package.json
+tsconfig.json
+tsconfig.node.json
