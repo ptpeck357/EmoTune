@@ -8,7 +8,7 @@ export default [
 
     {
 
-        ignores: ['node_modules/', '**/dist/', '*.config.js', '**/*.d.ts', '**/coverage/'],
+        ignores: ['node_modules/', '**/dist/', '*.config.js', '**/*.d.ts', 'Jenkinsfile', '**/coverage/'],
 
         files: ['*/classes/*', '**/*.ts', '**/*.tsx'],
 
