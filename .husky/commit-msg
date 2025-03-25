@@ -1,5 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+# Debugging line to check if the commit message hook is triggered
+echo "Running Commitlint on ${1}"
+
 # Run Commitlint to check the commit message
 pnpm dlx commitlint --edit ${1}
