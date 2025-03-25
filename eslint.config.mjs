@@ -2,92 +2,66 @@ import { createRequire } from 'module';
 
 const require = createRequire(import.meta.url);
 
-
-
 export default [
+	{
+		ignores: ['node_modules/', '**/dist/', '*.config.js', '**/*.d.ts', 'Jenkinsfile', '**/coverage/'],
 
-    {
+		files: ['*/classes/*', '**/*.ts', '**/*.tsx'],
 
-        ignores: ['node_modules/', '**/dist/', '*.config.js', '**/*.d.ts', 'Jenkinsfile', '**/coverage/'],
+		languageOptions: {
+			parser: require('@typescript-eslint/parser'),
 
-        files: ['*/classes/*', '**/*.ts', '**/*.tsx'],
+			parserOptions: {
+				ecmaVersion: 'latest',
 
-        languageOptions: {
+				sourceType: 'module',
 
-            parser: require('@typescript-eslint/parser'),
+				project: './tsconfig.json',
+			},
+		},
 
-            parserOptions: {
+		plugins: {
+			'@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
+		},
 
-                ecmaVersion: 'latest',
+		rules: {
+			'@typescript-eslint/no-unused-expressions': [
+				'error',
 
-                sourceType: 'module',
+				{
+					allowShortCircuit: true,
 
-                project: './tsconfig.json',
+					allowTernary: true,
 
-            },
+					allowTaggedTemplates: true,
+				},
+			],
 
-        },
+			'@typescript-eslint/no-unused-vars': [
+				'error',
 
-        plugins: {
+				{
+					vars: 'all',
 
-            '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
+					args: 'after-used',
 
-        },
+					ignoreRestSiblings: true,
 
-        rules: {
+					argsIgnorePattern: '^_',
+				},
+			],
 
-            '@typescript-eslint/no-unused-expressions': [
+			'prefer-const': [
+				'error',
 
-                'error',
+				{
+					destructuring: 'any',
 
-                {
+					ignoreReadBeforeAssign: false,
+				},
+			],
 
-                    allowShortCircuit: true,
-
-                    allowTernary: true,
-
-                    allowTaggedTemplates: true,
-
-                },
-
-            ],
-
-            '@typescript-eslint/no-unused-vars': [
-
-                'error',
-
-                {
-
-                    vars: 'all',
-
-                    args: 'after-used',
-
-                    ignoreRestSiblings: true,
-
-                    argsIgnorePattern: '^_',
-
-                },
-
-            ],
-
-            'prefer-const': [
-
-                'error',
-
-                {
-
-                    destructuring: 'any',
-
-                    ignoreReadBeforeAssign: false,
-
-                },
-
-            ],
-
-            'spaced-comment': ['error', 'always', { exceptions: ['-', '+'] }],
-
-        },
-
-    },
-
+			'spaced-comment': ['error', 'always', { exceptions: ['-', '+'] }],
+		},
+	},
 ];
